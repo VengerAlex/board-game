@@ -73,3 +73,6 @@ button:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
+.active-cell {
+  border-color: #646cff;
+}

@@ -10,11 +10,13 @@ export const BoardList: FC<BoardListProps> = ({board, moveCellHandler}) => {
     return (
         <div className="board">
             {board.map((row, rowIndex) =>
-                row.map((column, columnIndex) =>
-                    <button
+                row.map((column, columnIndex) => {
+                    return <button
+                        className={!column ? 'active-cell' : ''}
                         key={rowIndex + columnIndex}
-                        onClick={() => moveCellHandler(rowIndex, columnIndex)}
-                    >{column}</button>
+                        onClick={() => moveCellHandler(rowIndex, columnIndex)}>
+                        {column}
+                    </button>}
                 )
             )}
         </div>

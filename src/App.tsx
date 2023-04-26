@@ -1,13 +1,12 @@
 import {useState} from "react";
 import {BoardList} from "./components/BoardList.tsx";
 import {isCellNearNullRow} from "./utils/isCellNearNullRow.ts";
+import {generateBoard} from "./utils/generateBoard.ts";
 
 export type Board = (number | null)[][]
 
-const INITIAL_BOARD = [[null, 2, 1], [3, 5, 4], [7, 8, 6]]
-
 export const App = () => {
-  const [board, setBoard] = useState<Board>(INITIAL_BOARD)
+  const [board, setBoard] = useState<Board>(() => generateBoard())
 
   const moveCellHandler = (row: number, column: number) => {
     const nullRow = board.findIndex(row => row.includes(null))

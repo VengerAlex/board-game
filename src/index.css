@@ -72,6 +72,7 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  margin-bottom: 20px;
 }
 .active-cell {
   border-color: #646cff;

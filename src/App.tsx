@@ -44,6 +44,7 @@ export const App = () => {
             board={board}
             moveCellHandler={moveCellHandler}
         />
+        <button onClick={() => setBoard(generateBoard)}>Shuffle</button>
       </div>
   )
 }

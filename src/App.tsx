@@ -1,7 +1,8 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {BoardList} from "./components/BoardList.tsx";
 import {isCellNearNullRow} from "./utils/isCellNearNullRow.ts";
 import {generateBoard} from "./utils/generateBoard.ts";
+import {hasWon} from "./utils/hasWon.ts";
 
 export type Board = (number | null)[][]
 
@@ -32,6 +33,10 @@ export const App = () => {
       setBoard(newBoard)
     }
   }
+
+  useEffect(() => {
+    console.log(hasWon(board))
+  }, [board])
 
   return (
       <div className='container'>

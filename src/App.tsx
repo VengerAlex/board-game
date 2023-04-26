@@ -8,6 +8,7 @@ export type Board = (number | null)[][]
 
 export const App = () => {
   const [board, setBoard] = useState<Board>(() => generateBoard())
+  const [isHighlighted, setIsHighlighted] = useState(false)
 
   const moveCellHandler = (row: number, column: number) => {
     const nullRow = board.findIndex(row => row.includes(null))
@@ -42,9 +43,15 @@ export const App = () => {
       <div className='container'>
         <BoardList
             board={board}
+            isHighlighted={isHighlighted}
             moveCellHandler={moveCellHandler}
         />
-        <button onClick={() => setBoard(generateBoard)}>Shuffle</button>
+        <div className="buttons">
+          <button onClick={() => setBoard(generateBoard)}>Shuffle</button>
+          <button
+              className={isHighlighted ? 'active-cell' : ''}
+              onClick={() => setIsHighlighted(prevValue => !prevValue)}>Highlight</button>
+        </div>
       </div>
   )
 }

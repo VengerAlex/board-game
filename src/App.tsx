@@ -3,12 +3,20 @@ import {BoardList} from "./components/BoardList.tsx";
 import {isCellNearNullRow} from "./utils/isCellNearNullRow.ts";
 import {generateBoard} from "./utils/generateBoard.ts";
 import {hasWon} from "./utils/hasWon.ts";
+import {useDelay} from "./hooks/useDelay.ts";
 
 export type Board = (number | null)[][]
 
 export const App = () => {
+  const {isDelaying, delay} = useDelay()
   const [board, setBoard] = useState<Board>(() => generateBoard())
   const [isHighlighted, setIsHighlighted] = useState(false)
+
+  const higlightHellCellHandler = () => {
+    setIsHighlighted(prevValue => !prevValue)
+
+    delay(3000, () => setIsHighlighted(prevValue => !prevValue))
+  }
 
   const moveCellHandler = (row: number, column: number) => {
     const nullRow = board.findIndex(row => row.includes(null))
@@ -49,8 +57,9 @@ export const App = () => {
         <div className="buttons">
           <button onClick={() => setBoard(generateBoard)}>Shuffle</button>
           <button
+              disabled={isDelaying}
               className={isHighlighted ? 'active-cell' : ''}
-              onClick={() => setIsHighlighted(prevValue => !prevValue)}>Highlight</button>
+              onClick={higlightHellCellHandler}>Highlight</button>
         </div>
       </div>
   )
